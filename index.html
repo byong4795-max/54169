@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>曹苡萱的網站</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background-color: #ffffff;
+      font-family: Arial, sans-serif;
+      color: #333;
+      text-align: center;
+    }
+
+    /* 背景畫布 */
+    #p5-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+
+    /* 中間主要內容 */
+    #content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1;
+      color: #fff;
+      text-align: center;
+    }
+
+    h2, h3 {
+      margin: 0;
+    }
+
+    .info-text {
+      font-size: 1.2em;
+      margin-top: 10px;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 10px;
+      border-radius: 5px;
+      display: inline-block;
+    }
+
+    .photo-container {
+      margin-top: 20px;
+    }
+
+    .my-photo {
+      width: 300px;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    /* 側邊欄 */
+    #sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: calc(100vw / 10);
+      height: 100vh;
+      background-color: rgba(255, 255, 153, 0.45);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 30px;
+      z-index: 2;
+      transition: transform 0.4s ease;
+    }
+
+    /* 隱藏狀態 */
+    #sidebar.hidden {
+      transform: translateX(-100%);
+    }
+
+    /* 關閉按鈕 */
+    #close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #333;
+      cursor: pointer;
+      background: rgba(255, 255, 255, 0.6);
+      border-radius: 50%;
+      width: 25px;
+      height: 25px;
+      line-height: 25px;
+      text-align: center;
+      transition: background 0.3s;
+    }
+
+    #close-btn:hover {
+      background: rgba(255, 255, 255, 0.9);
+    }
+
+    /* 側邊欄連結 */
+    #sidebar a {
+      margin: 25px 0;
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+      font-size: 1.1em;
+      transition: color 0.3s;
+    }
+
+    #sidebar a:hover {
+      color: #0000cc;
+    }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.1/p5.js"></script>
+  <script src="sketch.js"></script>
+</head>
+<body>
+
+  <!-- 側邊選單 -->
+  <div id="sidebar">
+    <div id="close-btn">✕</div>
+    <a href="https://byong4795-max.github.io/20251014/" target="_blank">泡泡動畫</a>
+    <a href="https://byong4795-max.github.io/20251014.2/" target="_blank">泡泡遊戲</a>
+    <a href="https://byong4795-max.github.io/1104/" target="_blank">小測驗</a>
+        <a href="https://hackmd.io/@4z_zmNqrRyaTBKhbf-vkTg/Bk8U_dJhgx" target="_blank">筆記們</a>
+  </div>
+
+  <!-- 原本內容 -->
+  <div id="content">
+    <div class="info-text">
+      <h2>淡江大學教育科技學系</h2>
+      <h3>學號: 414730050</h3>
+      <h3>姓名: 曹苡萱</h3>
+    </div>
+    <div class="photo-container">
+      <img src="1000038709.png" alt="我的照片" class="my-photo" />
+    </div>
+  </div>
+
+  <script>
+    const sidebar = document.getElementById("sidebar");
+    const closeBtn = document.getElementById("close-btn");
+
+    // 點擊叉叉關閉側邊欄
+    closeBtn.addEventListener("click", () => {
+      sidebar.classList.add("hidden");
+    });
+
+    // 滑鼠移到左邊緣 → 顯示側邊欄
+    document.addEventListener("mousemove", (e) => {
+      if (e.clientX < 20) { // 滑鼠靠近左邊 20px
+        sidebar.classList.remove("hidden");
+      }
+    });
+  </script>
+</body>
+</html>
+
